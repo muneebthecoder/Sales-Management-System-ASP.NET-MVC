@@ -1,0 +1,105 @@
+﻿@model SalesManagementSystem.Models.Sales
+
+@{
+    ViewBag.Title = "AddSales";
+    Layout = "~/Views/Shared/_dashboard.cshtml";
+
+
+    var slist = TempData["slist"] as List<SelectListItem> ?? new List<SelectListItem>();
+}
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<body>
+
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <hr />
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        <h2 class="text-center text-primary">Add Sales</h2>
+
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                Customer Name
+                                @Html.EditorFor(model => model.CustomerName, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CustomerName, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                Customer Number
+                                @Html.EditorFor(model => model.CustomerNumber, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.CustomerNumber, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                Select Product
+                                @*   @Html.DropDownList("Add",null,new { onchange="document.location.href='/Default/Index?value='+this.value;"})*@
+                                @Html.DropDownListFor(model => model.SelectProduct, (List<SelectListItem>)slist, "-------")                                @Html.ValidationMessageFor(model => model.SelectProduct, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        @*    <div class="form-group">
+                                  Cost
+                                <div class="col-md-offset-2 col-md-10">
+                                    <input type="text" id="val" readonly="readonly" />
+                                </div>
+                            </div>*@
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                Product Cost
+                                @Html.EditorFor(model => model.Cost, new {htmlAttributes = new {@id="val", @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Cost, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+
+                            <div class="col-md-10">
+                                Product Quantity
+                                @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Add" class="btn btn-primary" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+            @*    <script>
+                    function seletedtext(ddlitem) {
+                        var selvalue = ddlitem.value;
+                        var seltext = ddlitem.options[ddlitem.seletedIndex].innerHTML;
+                        $('#val').val(seltext);
+                    }
+                </script>*@
+            </div>
+        </div>
+    </div>
+</body>
+</html>

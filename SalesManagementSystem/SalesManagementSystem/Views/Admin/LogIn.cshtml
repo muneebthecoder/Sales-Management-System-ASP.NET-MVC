@@ -1,0 +1,60 @@
+﻿@model SalesManagementSystem.Models.Admin
+
+@{
+    ViewBag.Title = "LogIn";
+    Layout = "~/Views/Shared/_layout.cshtml";
+}
+<hr />
+<hr />
+<hr />
+<hr />
+<hr />
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-lg-12">
+
+
+            @using (Html.BeginForm())
+            {
+                @Html.AntiForgeryToken()
+
+                <div class="form-horizontal">
+                    <h4 class="text-center text-primary">Admin Login</h4>
+                    <hr />
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.aid, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.aid, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.aid, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.password, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.PasswordFor(model => model.password, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.password, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="col-md-offset-2 col-md-10">
+                            <input type="submit" value="Login" class="btn btn-default" style="background-color:Highlight ; color:cornsilk" />
+                            @Html.ActionLink("Signup Now!", "SignUp")
+
+                        </div>
+
+
+
+
+
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+</div>
+
